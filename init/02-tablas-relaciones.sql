@@ -134,11 +134,13 @@ CREATE TABLE prestamo (
     id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
     fh_inicio DATETIME NOT NULL,
     fh_fin DATETIME NOT NULL,
+    fh_devolucion DATETIME NULL, -- Nueva columna agregada (permite NULL si aún no se devolvió)
     nro_lector INT NOT NULL,
 
     FOREIGN KEY (nro_lector) REFERENCES lector(nro_lector),
 
-    CHECK (fh_inicio < fh_fin)
+    CHECK (fh_inicio < fh_fin),
+    CHECK (fh_devolucion IS NULL OR fh_inicio <= fh_devolucion) -- Opcional: Validación de integridad lógica
 );
 
 CREATE TABLE incluye (
