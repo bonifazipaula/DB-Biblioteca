@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise';
 // Configuración de la conexión a la base de datos 
 const dbConfig = {
     host: 'localhost',
+    port: '3307',
     user: 'root',
     password: 'root123',      
     database: 'biblioteca_db'  
