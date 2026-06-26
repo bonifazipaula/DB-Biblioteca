@@ -102,12 +102,12 @@ ORDER BY cantidad_mensual DESC;
 
 -- 2. Consultar el rendimiento de los autores en mayo de 2026
 SELECT * FROM vw_estadisticas_prestamos_autor 
-WHERE anio = 2026 AND mes = 4
+WHERE anio = 2025 AND mes = 7
 ORDER BY cantidad_mensual DESC;
 
 -- 3. Consultar qué temas fueron los más pedidos en un mes en particular
 SELECT * FROM vw_estadisticas_prestamos_tema 
-WHERE anio = 2026 AND mes = 5
+WHERE anio = 2025 AND mes = 10
 ORDER BY diferencia_interanual DESC;
 
 -- 4. Ver el comparativo de las editoriales en junio

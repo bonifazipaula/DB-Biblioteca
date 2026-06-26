@@ -53,7 +53,7 @@ DELIMITER ;
 
 
 INSERT INTO libro (titulo) 
-VALUES ('Redes De Computadoras');
+VALUES ('');
 -- ir poniendo nuevos titulos --
 
 SET @nuevo_libro = LAST_INSERT_ID();
