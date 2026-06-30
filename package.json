@@ -1,0 +1,25 @@
+{
+  "name": "db-biblioteca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonifazipaula/DB-Biblioteca.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/bonifazipaula/DB-Biblioteca/issues"
+  },
+  "homepage": "https://github.com/bonifazipaula/DB-Biblioteca#readme",
+  "dependencies": {
+    "inquirer": "^14.0.2",
+    "mysql2": "^3.22.5"
+  }
+}
