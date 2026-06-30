@@ -1,3 +1,5 @@
+-- VER --
+
 /*
 CREATE PROCEDURE SP_Lectores_Notificar_Nuevo_Libro(IN p_id_libro_nuevo INT)
 BEGIN
@@ -53,7 +55,7 @@ DELIMITER ;
 
 
 INSERT INTO libro (titulo) 
-VALUES ('');
+VALUES ('TOP Bases de Datos 2026');
 -- ir poniendo nuevos titulos --
 
 SET @nuevo_libro = LAST_INSERT_ID();
@@ -62,4 +64,4 @@ INSERT INTO escrito_por (id_autor, id_libro)
 VALUES (1, @nuevo_libro);
 -- Cambiar id_autor
 
-CALL SP_Lectores_Notificar_Nuevo_Libro(@nuevo_libro);
+CALL SP_Lectores_Notificar_Nuevo_Libro_Clasico(@nuevo_libro);

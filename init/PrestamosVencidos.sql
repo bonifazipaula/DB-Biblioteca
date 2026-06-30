@@ -28,4 +28,4 @@ END //
 DELIMITER ;
 -- PRUEBA --
 
-CALL ObtenerPrestamosVencidos('2026-06-26 00:00:00');
+CALL ObtenerPrestamosVencidos('2026-07-01 00:00:00');

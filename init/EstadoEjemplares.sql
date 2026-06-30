@@ -22,7 +22,7 @@ LEFT JOIN prestamo p ON i.id_prestamo = p.id_prestamo AND p.fh_devolucion IS NUL
 -- Para explotar esta vista según los distintos criterios solicitados, puedes ejecutar: --
 -- PREGUNTAR X CADA UNA A GEMIMI Y QUE EXPLIQUE QUE HACEN, EVALUAR --
 
-SELECT * FROM vw_estado_ejemplares WHERE id_libro = 11;
+SELECT * FROM vw_estado_ejemplares WHERE id_libro = 22;
 /*
 Que hace: Filtra la vista para devolver el estado actual de todos los ejemplares que pertenecen a 
 un único libro físico (en este caso, el que posee el identificador x).
@@ -44,7 +44,7 @@ vinculados a dicho autor y luego expone el estado de cada uno de sus ejemplares.
 
 SELECT v.* FROM vw_estado_ejemplares v
 JOIN trata t ON v.isbn = t.isbn
-WHERE t.id_tema = 5;
+WHERE t.id_tema = 4;
 /*
 Qué hace: Muestra el estado en tiempo real de los ejemplares de libros catalogados bajo un 
 área temática específica (tema con identificador 1).
@@ -55,7 +55,7 @@ conocer la disponibilidad en estantería de toda la bibliografía de esa categor
 
 SELECT v.* FROM vw_estado_ejemplares v
 JOIN recomienda r ON v.id_libro = r.id_libro
-WHERE r.nro_lector = 1;
+WHERE r.nro_lector = 15;
 /*
 Qué hace: Devuelve el listado y estado de los ejemplares de aquellos libros que han sido recomendados formalmente 
 por un profesor (identificado en el sistema como el lector número 10).
