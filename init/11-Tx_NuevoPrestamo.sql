@@ -1,3 +1,5 @@
+USE biblioteca_db;
+
 /*
 El lugar perfecto para modelar una transacción de principio a fin 
 (respetando las propiedades ACID) es en la creación de un nuevo préstamo.

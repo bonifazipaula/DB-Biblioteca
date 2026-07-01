@@ -1,3 +1,5 @@
+USE biblioteca_db;
+
 -- Estadísticas Comparativas Interanuales --
 
 CREATE VIEW vw_estadisticas_prestamos_titulo AS

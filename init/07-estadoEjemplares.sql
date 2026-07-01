@@ -1,3 +1,5 @@
+USE biblioteca_db;
+
 -- Estado Ejemplares --
 
 CREATE OR REPLACE VIEW vw_estado_ejemplares AS

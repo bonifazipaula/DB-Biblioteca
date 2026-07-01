@@ -1,3 +1,5 @@
+USE biblioteca_db;
+
 DELIMITER //
 
 CREATE PROCEDURE SP_Lectores_Notificar_Nuevo_Libro_Clasico(IN p_id_libro_nuevo INT)

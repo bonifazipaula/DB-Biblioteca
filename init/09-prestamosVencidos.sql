@@ -1,3 +1,5 @@
+USE biblioteca_db;
+
 -- Préstamos Vencidos a una Fecha Dada --
 
 DELIMITER //
