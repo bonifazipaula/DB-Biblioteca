@@ -26,6 +26,6 @@ BEGIN
 END //
 
 DELIMITER ;
--- PRUEBA --
 
+-- prueba: INDICAR FECHA aaaa-mm-dd
 CALL ObtenerPrestamosVencidos('2026-07-01 00:00:00');

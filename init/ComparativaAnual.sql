@@ -95,22 +95,22 @@ FROM prestamos_mensuales;
 
 -- pruebas --
 
--- 1. Consultar el rendimiento de los autores en mayo de 2026
+-- 1. Consulta por titulo: indicar año y mes
 SELECT * FROM vw_estadisticas_prestamos_titulo 
-WHERE anio = 2025 AND mes = 10
+WHERE anio = 2026 AND mes = 6
 ORDER BY cantidad_mensual DESC;
 -- VER --
 
--- 2. Consultar el rendimiento de los autores en mayo de 2026
+-- 2. Consulta por autores: indicar año y mes
 SELECT * FROM vw_estadisticas_prestamos_autor 
 WHERE anio = 2025 AND mes = 5
 ORDER BY cantidad_mensual DESC;
 
--- 3. Consultar qué temas fueron los más pedidos en un mes en particular
+-- 3. Consulta por temas: indicar año y mes
 SELECT * FROM vw_estadisticas_prestamos_tema 
 WHERE anio = 2026 AND mes = 6
 ORDER BY diferencia_interanual DESC;
 
--- 4. Ver el comparativo de las editoriales en junio
+-- 4. Consulta por editoriales: indicar año y mes
 SELECT * FROM vw_estadisticas_prestamos_editorial 
 WHERE anio = 2026 AND mes = 5;
