@@ -4,14 +4,14 @@ DELIMITER //
 
 CREATE PROCEDURE SP_Lectores_Notificar_Nuevo_Libro_Clasico(IN p_id_libro_nuevo INT)
 BEGIN
-    -- 1. Identificamos al autor del libro que acaba de ingresar
+    -- 1. Identifica al autor del libro que acaba de ingresar
     DECLARE v_id_autor INT;
     SELECT id_autor INTO v_id_autor 
     FROM escrito_por 
     WHERE id_libro = p_id_libro_nuevo 
     LIMIT 1;
 
-    -- 2. La consulta de División Relacional (formato diapositiva)
+    -- 2. División
     SELECT l.nro_lector, l.nombre, l.apellido, l.cuil
     FROM   lector l
     WHERE  NOT EXISTS (SELECT *
@@ -23,24 +23,24 @@ BEGIN
                                        JOIN   edicion ed ON i.isbn = ed.isbn
                                        WHERE  ed.id_libro = ep.id_libro AND
                                               pr.nro_lector = l.nro_lector))
-    -- (Opcional pero recomendado) Evita enviar correos si el autor es totalmente nuevo 
-    -- y no tenía libros previos, descartando a lectores que no tienen préstamos.
+    -- No envia notificaciones si el autor es completamente nuevo, ya que entonces nadie leyo
+    -- ninguno de sus libros.
     AND EXISTS (SELECT 1 FROM prestamo p2 WHERE p2.nro_lector = l.nro_lector);
 
 END //
 
 DELIMITER ;
 
--- Insertamos el nuevo libro
+-- Inserta el nuevo libro
 INSERT INTO libro (titulo) 
-VALUES ('El nuevo libro del autor 2');
+VALUES ('El nuevo nuevo libro del autor 2');
 
--- Capturamos el ID del libro recién creado
+-- Captura el ID del libro recién creado
 SET @nuevo_libro = LAST_INSERT_ID();
 
--- Lo asociamos al autor 5 (Martin Fowler)
+-- Se asocia al autor 2
 INSERT INTO escrito_por (id_autor, id_libro) 
 VALUES (2, @nuevo_libro);
 
--- Ejecutamos la notificación
+-- Ejecuta la notificación
 CALL SP_Lectores_Notificar_Nuevo_Libro_Clasico(@nuevo_libro);

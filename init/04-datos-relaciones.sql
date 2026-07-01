@@ -1,7 +1,7 @@
 USE biblioteca_db;
 
 -- =========================
--- RELACIONES DE AUTORIA (Los 30 libros vinculados)
+-- RELACIONES DE AUTORIA
 -- =========================
 INSERT INTO escrito_por (id_autor, id_libro) VALUES
 (1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (3,8), (8,9), (13,10), 
@@ -53,7 +53,7 @@ INSERT INTO edicion (isbn, indice, f_publicacion, id_libro, id_estanteria, id_ed
 ('978-000-30', 'Indice Cripto', '2015-03-10', 30, 11, 4);
 
 -- =========================
--- EJEMPLARES (Masivo: Hasta 5 copias por libro)
+-- EJEMPLARES (Hasta 5 copias por libro)
 -- =========================
 INSERT INTO ejemplar (isbn, nro_ejemplar, estado) VALUES
 -- Libros muy demandados (5 ejemplares)
@@ -86,7 +86,7 @@ INSERT INTO ejemplar (isbn, nro_ejemplar, estado) VALUES
 ('978-000-29', 1, 'Disponible'), ('978-000-29', 2, 'Disponible'),
 ('978-000-30', 1, 'Disponible'), ('978-000-30', 2, 'Disponible'),
 
--- Libros de nicho (1 ejemplar)
+-- Libros de poca demanda (1 ejemplar)
 ('978-000-12', 1, 'Disponible'),
 ('978-000-13', 1, 'Disponible'),
 ('978-000-14', 1, 'Disponible'),
@@ -95,7 +95,7 @@ INSERT INTO ejemplar (isbn, nro_ejemplar, estado) VALUES
 ('978-000-25', 1, 'Disponible');
 
 -- =========================
--- TEMAS Y PALABRAS CLAVE ASOCIADAS
+-- TEMAS
 -- =========================
 INSERT INTO trata (id_tema, isbn) VALUES
 (1, '978-000-01'), (2, '978-000-02'), (3, '978-000-03'), (4, '978-000-04'), 
@@ -107,6 +107,10 @@ INSERT INTO trata (id_tema, isbn) VALUES
 (10, '978-000-25'), (6, '978-000-26'), (7, '978-000-27'), (1, '978-000-28'), 
 (8, '978-000-29'), (9, '978-000-30');
 
+
+-- =========================
+-- PALABRAS CLAVE
+-- =========================
 INSERT INTO se_identifica_con (id_palabra, isbn) VALUES
 (1, '978-000-01'), (4, '978-000-02'), (3, '978-000-05'), (5, '978-000-07'), 
 (1, '978-000-11'), (3, '978-000-14'), (10, '978-000-17'), (6, '978-000-18'),
@@ -182,7 +186,7 @@ INSERT INTO prestamo (id_prestamo, fh_inicio, fh_fin, fh_devolucion, nro_lector)
 
 -- ---------------------------------
 -- AÑO 2026 (15 Préstamos) 
--- Pruebas de Vencidos y Activos (Fecha actual: 26 de Junio de 2026)
+-- Pruebas de Vencidos y Activos
 -- ---------------------------------
 -- Históricos recientes (ya devueltos)
 (36, '2026-03-10 11:15:00', '2026-03-24 11:15:00', '2026-03-23 11:15:00', 15),
@@ -192,21 +196,21 @@ INSERT INTO prestamo (id_prestamo, fh_inicio, fh_fin, fh_devolucion, nro_lector)
 (40, '2026-05-20 13:20:00', '2026-06-03 13:20:00', '2026-06-02 13:20:00', 19),
 
 -- Préstamos VENCIDOS (Aún no devueltos y su fecha fin ya pasó)
-(41, '2026-05-28 15:00:00', '2026-06-11 15:00:00', NULL, 20), -- Vencido hace 15 días
-(42, '2026-06-01 10:00:00', '2026-06-15 10:00:00', NULL, 2),  -- Vencido hace 11 días
-(43, '2026-06-05 09:00:00', '2026-06-19 09:00:00', NULL, 3),  -- Vencido hace 7 días
-(44, '2026-06-10 10:30:00', '2026-06-24 10:30:00', NULL, 4),  -- Vencido hace 2 días
+(41, '2026-05-28 15:00:00', '2026-06-11 15:00:00', NULL, 20), 
+(42, '2026-06-01 10:00:00', '2026-06-15 10:00:00', NULL, 2),  
+(43, '2026-06-05 09:00:00', '2026-06-19 09:00:00', NULL, 3), 
+(44, '2026-06-10 10:30:00', '2026-06-24 10:30:00', NULL, 4), 
 
 -- Préstamos ACTIVOS / EN TÉRMINO (Aún no devueltos, fecha fin en el futuro)
-(45, '2026-06-15 14:00:00', '2026-06-29 14:00:00', NULL, 5),  -- Vence en 3 días
-(46, '2026-06-18 11:15:00', '2026-07-02 11:15:00', NULL, 6),  -- Vence en Julio
-(47, '2026-06-20 16:45:00', '2026-07-04 16:45:00', NULL, 7),  -- Vence en Julio
-(48, '2026-06-22 09:30:00', '2026-07-06 09:30:00', NULL, 8),  -- Vence en Julio
-(49, '2026-06-24 11:00:00', '2026-07-08 11:00:00', NULL, 9),  -- Vence en Julio
-(50, '2026-06-25 13:20:00', '2026-07-09 13:20:00', NULL, 10); -- Se lo llevó ayer
+(45, '2026-06-15 14:00:00', '2026-06-29 14:00:00', NULL, 5),  
+(46, '2026-06-18 11:15:00', '2026-07-02 11:15:00', NULL, 6), 
+(47, '2026-06-20 16:45:00', '2026-07-04 16:45:00', NULL, 7), 
+(48, '2026-06-22 09:30:00', '2026-07-06 09:30:00', NULL, 8), 
+(49, '2026-06-24 11:00:00', '2026-07-08 11:00:00', NULL, 9),  
+(50, '2026-06-25 13:20:00', '2026-07-09 13:20:00', NULL, 10);
 
 -- =========================
--- INCLUYE (Asignación de ejemplares para los 50 préstamos)
+-- INCLUYE (Asignación de ejemplares para los préstamos)
 -- Algunos préstamos incluyen más de 1 libro
 -- =========================
 INSERT INTO incluye (id_prestamo, isbn, nro_ejemplar) VALUES

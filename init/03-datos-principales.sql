@@ -1,7 +1,7 @@
 USE biblioteca_db;
 
 -- =========================
--- LIBROS (Ampliados)
+-- LIBROS
 -- =========================
 INSERT INTO libro (id_libro, titulo) VALUES
 (1, 'Introduccion a las Bases de Datos'),
@@ -36,7 +36,7 @@ INSERT INTO libro (id_libro, titulo) VALUES
 (30, 'Criptografía Aplicada');
 
 -- =========================
--- AUTORES (Ampliados)
+-- AUTORES
 -- =========================
 INSERT INTO autor (id_autor, nombre, apellido, nom_fantasia, biografia, f_nacimiento) VALUES
 (1, 'Carlos', 'Gomez', NULL, 'Especialista en bases de datos relacionales.', '1975-04-12'),
@@ -56,18 +56,24 @@ INSERT INTO autor (id_autor, nombre, apellido, nom_fantasia, biografia, f_nacimi
 (15, 'Alan', 'Oppenheim', NULL, 'Experto en procesamiento de señales.', '1937-11-11');
 
 -- =========================
--- IDIOMAS, ESTANTERIAS, EDITORIALES
+-- IDIOMAS
 -- =========================
 INSERT INTO idioma (id_idioma, descripcion) VALUES (1, 'Español'), (2, 'Ingles'), (3, 'Portugues'), (4, 'Frances');
 
+-- =========================
+-- ESTANTERIAS
+-- =========================
 INSERT INTO estanteria (id_estanteria) VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
 
+-- =========================
+-- ESTANTERIAS EDITORIALES
+-- =========================
 INSERT INTO editorial (id_editorial, nombre) VALUES
 (1, 'Editorial Universitaria'), (2, 'Alfaomega'), (3, 'Pearson'), (4, 'McGraw Hill'), 
 (5, 'Siglo XXI'), (6, 'OReilly Media'), (7, 'Addison-Wesley'), (8, 'Sudamericana');
 
 -- =========================
--- TEMAS y PALABRAS CLAVE (Adaptados)
+-- TEMAS 
 -- =========================
 INSERT INTO tema (id_tema, descripcion) VALUES
 (1, 'Bases de datos'), (2, 'Programacion C/C++'), (3, 'Sistemas operativos'), (4, 'Redes'), 
@@ -75,6 +81,9 @@ INSERT INTO tema (id_tema, descripcion) VALUES
 (8, 'Inteligencia Artificial y Visión'), (9, 'Seguridad informatica y Criptografía'), 
 (10, 'Literatura y Ficción'), (11, 'Economia y Microeconomia'), (12, 'Seguridad Industrial');
 
+-- =========================
+-- PALABRAS CLAVE
+-- =========================
 INSERT INTO palabra_clave (id_palabra, palabra) VALUES
 (1, 'SQL'), (2, 'Normalizacion'), (3, 'Patrones'), (4, 'C++'), (5, 'Punteros'),
 (6, 'YOLO'), (7, 'OpenCV'), (8, 'Jetson'), (9, 'IoT'), (10, 'Refactoring'),
