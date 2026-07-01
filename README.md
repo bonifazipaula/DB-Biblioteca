@@ -12,22 +12,17 @@ Este trabajo fue desarrollado para la cátedra **Diseño de Base de Datos y Base
 
 ## 🚀 Funcionalidades Implementadas
 
-El sistema cumple con los requerimientos específicos de la cátedra :
 
-1. 
-**Gestión de Préstamos:** Consulta de préstamos vencidos a una fecha específica con datos del deudor.
+1. **Gestión de Préstamos:** Consulta de préstamos vencidos a una fecha específica con datos del deudor.
 
 
-2. 
-**Estado de Ejemplares:** Visualización dinámica de la disponibilidad de ejemplares por libro, autor, tema o recomendación docente.
+2. **Estado de Ejemplares:** Visualización dinámica de la disponibilidad de ejemplares por libro, autor, tema o recomendación docente.
 
 
-3. 
-**Estadísticas Mensuales:** Comparativa interanual de préstamos por título, autor, editorial y tema.
+3. **Estadísticas Mensuales:** Comparativa interanual de préstamos por título, autor, editorial y tema.
 
 
-4. 
-**Notificaciones Automáticas:** Stored Procedure para identificar lectores que deben recibir avisos sobre nuevos libros.
+4. **Notificaciones Automáticas:** Stored Procedure para identificar lectores que deben recibir avisos sobre nuevos libros.
 
 
 5. **Integridad y Control:**
