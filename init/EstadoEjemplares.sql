@@ -9,7 +9,7 @@ SELECT
     p.fh_inicio,
     p.fh_fin AS fecha_devolucion_esperada,
     CASE
-        WHEN p.id_prestamo IS NULL THEN 'Disponible en Estantería'
+        WHEN p.id_prestamo IS NULL THEN 'Disponible en Estanteria'
         WHEN p.fh_devolucion IS NULL AND p.fh_fin >= NOW() THEN 'Prestado - En término'
         WHEN p.fh_devolucion IS NULL AND p.fh_fin < NOW() THEN 'Prestado - Vencido'
     END AS estado_disponibilidad_real
@@ -33,7 +33,7 @@ ver de manera centralizada cuáles están en sala y cuáles bajo préstamo activ
 
 SELECT v.* FROM vw_estado_ejemplares v
 JOIN escrito_por ep ON v.id_libro = ep.id_libro
-WHERE ep.id_autor = 2;
+WHERE ep.id_autor = 5;
 /*
 Qué hace: Obtiene la situación de disponibilidad de todos los 
 ejemplares correspondientes a cualquier libro escrito por un autor determinado (autor con identificador 2).
@@ -44,7 +44,7 @@ vinculados a dicho autor y luego expone el estado de cada uno de sus ejemplares.
 
 SELECT v.* FROM vw_estado_ejemplares v
 JOIN trata t ON v.isbn = t.isbn
-WHERE t.id_tema = 4;
+WHERE t.id_tema = 3;
 /*
 Qué hace: Muestra el estado en tiempo real de los ejemplares de libros catalogados bajo un 
 área temática específica (tema con identificador 1).
@@ -55,7 +55,7 @@ conocer la disponibilidad en estantería de toda la bibliografía de esa categor
 
 SELECT v.* FROM vw_estado_ejemplares v
 JOIN recomienda r ON v.id_libro = r.id_libro
-WHERE r.nro_lector = 15;
+WHERE r.nro_lector = 12;
 /*
 Qué hace: Devuelve el listado y estado de los ejemplares de aquellos libros que han sido recomendados formalmente 
 por un profesor (identificado en el sistema como el lector número 10).

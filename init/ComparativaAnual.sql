@@ -108,7 +108,7 @@ ORDER BY cantidad_mensual DESC;
 
 -- 3. Consultar qué temas fueron los más pedidos en un mes en particular
 SELECT * FROM vw_estadisticas_prestamos_tema 
-WHERE anio = 2025 AND mes = 10
+WHERE anio = 2026 AND mes = 6
 ORDER BY diferencia_interanual DESC;
 
 -- 4. Ver el comparativo de las editoriales en junio

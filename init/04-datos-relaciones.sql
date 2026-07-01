@@ -302,3 +302,39 @@ INSERT INTO biblio_opt (id_libro, cod_mat) VALUES
 (10, 'RED01'),    -- Redes -> Seguridad Informática
 (30, 'RED01'),    -- Redes -> Criptografía Aplicada
 (13, 'MAT01');    -- Matemática Discreta -> Lógica Computacional
+
+-- =========================
+-- EGRESADOS
+-- =========================
+-- Registramos a algunos lectores alumnos que ya completaron sus estudios
+INSERT INTO egresado (nro_lector, f_egreso) VALUES
+(7, '2023-12-15'),
+(8, '2024-07-20'),
+(9, '2025-03-10'),
+(10, '2025-12-20');
+
+-- =========================
+-- RECOMIENDA
+-- =========================
+-- Las recomendaciones cruzadas entre los libros disponibles y los profesores que dictan cada materia
+INSERT INTO recomienda (id_libro, nro_lector, cod_mat) VALUES
+-- Prof. 11 (Bases de Datos I)
+(1, 11, 'BD01'),   -- Introducción a las Bases de Datos
+(11, 11, 'BD01'),  -- SQL Avanzado
+(28, 11, 'BD01'),  -- Bases de Datos NoSQL
+
+-- Prof. 12 (Programación Orientada a Objetos)
+(2, 12, 'PROG1'),  -- Fundamentos de Programación en C y C++
+(14, 12, 'PROG1'), -- POO: Patrones de Diseño
+
+-- Prof. 13 (Visión Computacional y Edge Computing)
+(18, 13, 'VC01'),  -- Desarrollo de Sistemas de Visión Artificial con YOLO
+(29, 13, 'VC01'),  -- Machine Learning con Python y Google Colab
+(19, 13, 'EC01'),  -- Edge Computing: IA en Dispositivos Embebidos (Jetson & Pi)
+(8, 13, 'EC01'),   -- Arquitectura de Computadoras y Microcontroladores
+
+-- Prof. 14 (Seguridad e Higiene Industrial)
+(20, 14, 'SEG01'), -- Higiene y Seguridad en Entornos Industriales
+
+-- Prof. 15 (Microeconomía)
+(21, 15, 'MIC01'); -- Microeconomía Básica y Teoría del Consumidor
