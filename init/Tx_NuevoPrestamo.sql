@@ -1,10 +1,13 @@
 /*
-El lugar perfecto para modelar una transacción de principio a fin 
-(respetando las propiedades ACID) es en la creación de un nuevo préstamo.
-Un préstamo no existe de forma aislada; es un registro "Cabecera" 
-(tabla prestamo) que obligatoriamente necesita registros "Detalle" (tabla incluye). Si la base de datos se cae justo después de insertar la cabecera pero antes de insertar los ejemplares incluidos, el sistema quedaría en un estado inconsistente (un préstamo fantasma sin libros).
-Para evitar esto, creamos un Stored Procedure que envuelve ambas inserciones. 
-Además, implementamos un manejador de excepciones (DECLARE EXIT HANDLER) que ejecuta un ROLLBACK automático si algo falla.
+Modela una transacción de principio a fin 
+(respetando las propiedades ACID) en la creación de un nuevo préstamo.
+Un préstamo no existe de forma aislada, es un registro "Cabecera" 
+(tabla prestamo) que obligatoriamente necesita registros "Detalle" (tabla incluye). 
+Si la base de datos se cae justo después de insertar la cabecera pero antes de insertar 
+los ejemplares incluidos, el sistema quedaría en un estado inconsistente (un préstamo fantasma sin libros).
+Para evitar esto, creamos este Stored Procedure que envuelve ambas inserciones. 
+Además, implementamos un manejador de excepciones (DECLARE EXIT HANDLER) 
+que ejecuta un ROLLBACK automático si algo falla.
 */
 
 DELIMITER //
@@ -53,7 +56,7 @@ END //
 DELIMITER ;
 
 /*
-Prueba A: Ejecución Exitosa (El COMMIT)
+Prueba A: Ejecución Exitosa (COMMIT)
 Le vamos a prestar el ejemplar 4 del libro "Introducción a las Bases de Datos" (ISBN: 978-000-01) al Lector 15.
 */
 
@@ -75,18 +78,20 @@ FROM ejemplar
 WHERE isbn = '978-000-01' AND nro_ejemplar = 4;
 
 /*
-Resultado esperado: Verás que todo se insertó correctamente y el estado del ejemplar en la última 
-consulta habrá cambiado mágicamente de 'Disponible' a 'Prestado'.
+Resultado esperado: Ver que todo se insertó correctamente y el estado del ejemplar en la última 
+consulta cambia de 'Disponible' a 'Prestado'.
 */
 
 /*
-Prueba B: Falla Controlada (El ROLLBACK)
-Ahora vamos a intentar registrar un préstamo pasándole un ISBN falso ('000-ERROR-000').
-Dentro del Stored Procedure, el primer paso (insertar la cabecera en prestamo) funcionará perfectamente en la memoria del servidor. Sin embargo, el segundo paso (insertar en incluye) fallará catastróficamente porque la clave foránea no encontrará ese ISBN en la tabla de ediciones. Es aquí donde el EXIT HANDLER atrapará el error y 
-ejecutará el ROLLBACK para evitar que quede un préstamo fantasma sin libros.
+Prueba B: Falla Controlada (ROLLBACK)
+Registramos un préstamo pasándole un ISBN falso ('000-ERROR-000').
+Dentro del Stored Procedure, el primer paso (insertar la cabecera en prestamo) funcionará perfectamente en la memoria del servidor. 
+Sin embargo, el segundo paso (insertar en incluye) falla porque la clave foránea no encontrará 
+ese ISBN en la tabla de ediciones. Es aquí donde el EXIT HANDLER atrapa el error y 
+ejecuta el ROLLBACK para evitar que quede un préstamo fantasma sin libros.
 */
 
--- 1. Tomamos nota de cuál es el último id_prestamo válido en el sistema
+-- 1. Vemos nota de cuál es el último id_prestamo válido en el sistema
 SELECT MAX(id_prestamo) AS ultimo_id_antes_del_error FROM prestamo;
 
 -- 2. Forzamos el error pasando un ISBN inexistente
@@ -96,10 +101,10 @@ CALL SP_Registrar_Nuevo_Prestamo(16, DATE_ADD(NOW(), INTERVAL 14 DAY), '000-ERRO
 SELECT MAX(id_prestamo) AS ultimo_id_despues_del_error FROM prestamo;
 
 /*
-Resultado esperado: Al ejecutar el CALL, Workbench te arrojará el error nativo 
+Resultado esperado: Al ejecutar el CALL, el motor va a arrojar el error nativo 
 de clave foránea (Error Code: 1452. Cannot add or update a child row...).
-Sin embargo, al ejecutar la última consulta (Paso 3), verás que el ID máximo 
+Al ejecutar la última consulta (Paso 3), se debe ver que el ID máximo 
 sigue siendo exactamente el mismo que en el Paso 1. Esto demuestra que la transacción 
 deshizo silenciosamente el INSERT de la cabecera que había logrado ejecutarse, manteniendo 
-tu base de datos perfectamente limpia e íntegra.
+la base de datos limpia.
 */
